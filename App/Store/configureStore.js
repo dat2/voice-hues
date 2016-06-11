@@ -13,7 +13,7 @@ export default function configureStore() {
 
   // create enhancers
   const enhancers = compose(
-    autoRehydrate(),
+    autoRehydrate({ log: true }),
     applyMiddleware(sagaMiddleware),
     Reactotron.storeEnhancer()
   );

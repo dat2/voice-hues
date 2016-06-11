@@ -40,7 +40,7 @@ class Bridge extends React.Component {
 
   onPress() {
     const { navigate, ...rest } = this.props;
-    navigate('control', rest);
+    navigate('control', { bridge: rest });
   }
 
   render() {
@@ -74,7 +74,6 @@ class EntryScreen extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps);
     if(this.props.bridges !== nextProps.bridges) {
       this.setState({ dataSource: this.state.dataSource.cloneWithRows(nextProps.bridges.toJS()) });
     }
