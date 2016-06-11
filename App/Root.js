@@ -1,16 +1,14 @@
 import React from 'react';
-import { Text, View, StatusBar } from 'react-native';
+import { View, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 
-import MainScreen from './Components/MainScreen';
-import BottomBar from './Components/BottomBar';
+import Navigation from './Components/Navigation';
 import globalStyles from './Components/styles';
 
 import configureStore from './Store/configureStore';
 
 const style = globalStyles.extend({
   container: {
-    paddingTop: 20,
     height: '$appHeight',
 
     // ensure the container is flexified
@@ -33,14 +31,11 @@ class Root extends React.Component {
     return (
       <Provider store={store}>
         <View {...style('background container')}>
-          {/* since the background is gonna be black */}
-          <StatusBar barStyle='light-content' />
+          {/* since the background is gonna be white */}
+          <StatusBar barStyle='default' />
 
           {/* TODO put navigator here */}
-          <MainScreen />
-
-          {/* Like facebook / the original app */}
-          <BottomBar />
+          <Navigation />
         </View>
       </Provider>
     );

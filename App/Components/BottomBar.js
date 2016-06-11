@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableHighlight } from 'react-native';
 
 import globalStyles from './styles';
 
@@ -17,7 +17,7 @@ const style = globalStyles.extend({
     // flex 0 maintains the height
     flex: 0,
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'space-around'
   },
 
   // button similar styling to facebook
@@ -25,7 +25,14 @@ const style = globalStyles.extend({
     // space for the button
     container: {
       padding: 5,
-      paddingTop: 15
+      paddingTop: 15,
+      flex: 1
+    },
+
+    // container sub container
+    view: {
+      flex: 1,
+      alignItems: 'center'
     },
 
     // image
@@ -42,29 +49,31 @@ const style = globalStyles.extend({
 
 class BottomBarButton extends React.Component {
 
-  onPress() {
-    // trigger route mutation
-  }
-
   render() {
-    const { text } = this.props;
+    const { name, onPress } = this.props;
 
     return (
-      <TouchableOpacity onPress={this.onPress.bind(this)}>
-        <View {...style('background bottomBarButton.container')}>
-          <Text {...style('bottomBarButton.text')}>{ text }</Text>
+      <TouchableHighlight onPress={onPress} {...style('background bottomBarButton.container')}>
+        <View {...style('bottomBarButton.view')}>
+          <Text {...style('bottomBarButton.text')}>{ name }</Text>
         </View>
-      </TouchableOpacity>
+      </TouchableHighlight>
     );
   }
 }
 
 class BottomBar extends React.Component {
+
   render() {
+    const { names, onPageChange } = this.props;
+
     return (
       <View {...style('background bottomBar')}>
-        <BottomBarButton text='Main' />
-        <BottomBarButton text='Bridges' />
+        {
+          names.map((name, i) =>
+            <BottomBarButton name={name} key={i} onPress={() => onPageChange(name)}/>
+          )
+        }
       </View>
     );
   }

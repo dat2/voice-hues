@@ -1,5 +1,7 @@
-import { fork } from 'redux-saga/effects';
+import PhilipsSaga from './PhilipsSaga';
 
 export default function* root() {
-  // yield fork(saga)
+  yield [
+    PhilipsSaga()
+  ];
 }

@@ -11,8 +11,9 @@ const vars = variables({
   appHeight: height,
 
   // colours
-  background: '#111',
-  grey: '#bbb'
+  background: 'white',
+  text: 'black',
+  grey: '#ddd'
 });
 
 export default cairn(
