@@ -39,8 +39,9 @@ const style = globalStyles.extend({
 class Bridge extends React.Component {
 
   onPress() {
-    const { navigate, ...rest } = this.props;
+    const { navigate, selectBridge, ...rest } = this.props;
     navigate('control', { bridge: rest });
+    selectBridge(rest.index);
   }
 
   render() {
@@ -80,8 +81,8 @@ class EntryScreen extends React.Component {
   }
 
   renderRow(row) {
-    const { navigate } = this.props;
-    return <Bridge {...row} navigate={navigate}/>;
+    const { navigate, selectBridge } = this.props;
+    return <Bridge {...row} navigate={navigate} selectBridge={selectBridge}/>;
   }
 
   renderBridges() {

@@ -18,7 +18,11 @@ export const AUTHENTICATE_BRIDGE_CANCELLED = '@@VoiceHues/AUTHENTICATE_BRIDGE_CA
 export const AUTHENTICATE_BRIDGE = '@@VoiceHues/AUTHENTICATE_BRIDGE';
 export const AUTHENTICATE_BRIDGE_FAILED = '@@VoiceHues/AUTHENTICATE_BRIDGE_FAILED';
 
+export const SELECT_BRIDGE = '@@VoiceHues/SELECT_BRIDGE';
+
+export const LOAD_ROOMS = '@@VoiceHues/LOAD_ROOMS';
 export const API_CALL_REQUESTED = '@@VoiceHues/API_CALL_REQUESTED';
+export const TURN_ROOM_ON = '@@VoiceHues/TURN_ROOM_ON';
 
 // actions
 export function createRequestDiscoverBridgesAction() {
@@ -53,8 +57,17 @@ export function createAuthenticateBridgeFailedAction(error) {
   return { type: AUTHENTICATE_BRIDGE_FAILED, payload: null, error: immutableError(error) };
 }
 
-export function createApiCallRequestAction({ bridge, username, api }) {
-  return { type: API_CALL_REQUESTED, payload: { bridge, username, api }, error: null };
+export function createSelectBridgeAction(index) {
+  return { type: SELECT_BRIDGE, payload: { index }, error: null };
+}
+
+// type allows for a "return" action type
+export function createApiCallRequestAction({ bridge, username, api, type = '' }) {
+  return { type: API_CALL_REQUESTED, payload: { bridge, username, api, type }, error: null };
+}
+
+export function createTurnRoomOnAction({ room, value }) {
+  return { type: TURN_ROOM_ON, payload: { room, value }, error: null };
 }
 
 // reducer
@@ -69,7 +82,10 @@ const initialState = Immutable.fromJS({
     error: null,
     count: 0,
     waiting: false,
-    username: ''
+
+    selected: 0,
+    username: '',
+    rooms: []
   }
 });
 
@@ -109,6 +125,20 @@ export default function reducer(state = initialState, action) {
     case AUTHENTICATE_BRIDGE_FAILED:
       return state.setIn(['control', 'error'], action.error)
           .setIn(['control', 'waiting'], false);
+
+    case SELECT_BRIDGE:
+      return state.setIn(['control', 'selected'], action.payload.index);
+
+    // api call data stuff
+    case LOAD_ROOMS:
+      {
+        const data = action.payload.results;
+        let keys = Object.keys(data).map(key => ({ key, value: data[key] }))
+          .filter(({ value: group }) => group.type === 'Room');
+        const obj = keys.reduce((acc, { key, value }) => Object.assign(acc, { [key]: value }), {});
+
+        return state.setIn(['control', 'rooms'], Immutable.fromJS(obj));
+      }
   }
 
   return state;

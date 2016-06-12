@@ -1,9 +1,9 @@
 import { takeEvery, delay } from 'redux-saga';
-import { take, fork, race, call, put, cancel, cancelled } from 'redux-saga/effects';
+import { take, fork, race, call, put, cancel, cancelled, select } from 'redux-saga/effects';
 import R from 'ramda';
 import { REHYDRATE } from 'redux-persist/constants';
 
-import { discover, createApi, getConfig, createUser, turnLightOn } from '../Services/PhilipsApi';
+import { discover, createApi, getConfig, createUser, NAMES_TO_API_CALL, API_NAMES } from '../Services/PhilipsApi';
 import {
   // discover actions
   DISCOVER_BRIDGES_REQUESTED,
@@ -15,7 +15,8 @@ import {
   createAuthenticateBridgeWaitingAction, createAuthenticateBridgeAction, createAuthenticateBridgeFailedAction,
 
   // api call action
-  API_CALL_REQUESTED
+  API_CALL_REQUESTED, createApiCallRequestAction,
+  TURN_ROOM_ON,
 } from '../Modules/PhilipsModule';
 
 
@@ -88,20 +89,35 @@ function* authenticateBridge(action) {
   yield cancel(authBridgeTask);
 }
 
-const NAMES_TO_API_CALL = {
-  TURN_LIGHT_ON: turnLightOn
-};
-
 function* apiCall(action) {
-  const { bridge: { internalipaddress }, username, api: { name, args } } = action.payload;
+  const { bridge: { internalipaddress }, username, api: { name, args }, type } = action.payload;
 
   const api = createApi(internalipaddress);
 
   // TODO response actions
   try {
-    yield call(NAMES_TO_API_CALL[name], api, username, args);
+    const results = yield call(NAMES_TO_API_CALL[name], api, username, args);
+    if(type !== '') {
+      yield put({ type, payload: { results: results.data }, error: null });
+    }
   } catch(err) {
     console.warn(err);
+  }
+}
+
+function* turnRoomOn(action) {
+  const { room, value } = action.payload;
+
+  const philips = yield select(state => state.philips);
+
+  // get the bridge
+  const bridge = philips.getIn(['entry', 'bridges', philips.getIn(['control', 'selected'])]).toJS();
+  const username = philips.getIn(['control', 'username']);
+
+  const result = philips.getIn(['control', 'rooms']).findEntry(r => r.get('name').toUpperCase() === room);
+  if(result) {
+    const [id,_] = result;
+    yield put(createApiCallRequestAction({ bridge, username, api: { name: API_NAMES.turnRoomOn, args: { id, on: value }} }));
   }
 }
 
@@ -113,6 +129,7 @@ export default function* philipsSaga() {
   yield [
     takeEvery(DISCOVER_BRIDGES_REQUESTED, discoverBridges),
     takeEvery(AUTHENTICATE_BRIDGE_REQUESTED, authenticateBridge),
-    takeEvery(API_CALL_REQUESTED, apiCall)
+    takeEvery(API_CALL_REQUESTED, apiCall),
+    takeEvery(TURN_ROOM_ON, turnRoomOn)
   ];
 }

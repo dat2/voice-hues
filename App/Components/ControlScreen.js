@@ -1,11 +1,10 @@
 import React from 'react';
 import { TouchableHighlight, View, Image, Text } from 'react-native';
+import { API_NAMES } from '../Services/PhilipsApi';
+import ReadyPageContainer from '../Containers/ReadyPageContainer';
+
 import globalStyles from './styles';
-
 const style = globalStyles.extend({
-  voiceScreen: {
-
-  },
   waitingScreen: {
     image: {
       width: 120,
@@ -17,7 +16,7 @@ const style = globalStyles.extend({
 class ControlScreen extends React.Component {
 
   componentDidMount() {
-    const { authenticate, bridge } = this.props;
+    const { authenticate, bridge, loadRooms, username } = this.props;
     authenticate(bridge);
   }
 
@@ -45,29 +44,14 @@ class ControlScreen extends React.Component {
 
   onPress() {
     const { bridge, username, makeApiCall } = this.props;
-    makeApiCall({ bridge, username, api: { name: 'TURN_LIGHT_ON', args: { id: 1, on: true } } });
+    makeApiCall({ bridge, username, api: { name: API_NAMES.turnRoomOn, args: { id: 0, on: false } } });
   }
 
-  renderControlScreen() {
-    const { bridge: { authenticated } } = this.props;
-    // TODO check if authenticated :)
-
-    return (
-      <View {...style('centered voiceScreen')}>
-        <Text>Control your lights with your voice!</Text>
-
-        <TouchableHighlight onPress={this.onPress.bind(this)}>
-          <Text>Test :)</Text>
-        </TouchableHighlight>
-
-      </View>
-    );
-  }
 
   render() {
-    const { waiting } = this.props;
+    const { waiting, bridge } = this.props;
 
-    return waiting ? this.renderWaitScreen() : this.renderControlScreen();
+    return waiting ? this.renderWaitScreen() : <ReadyPageContainer bridge={bridge} />;
   }
 }
 

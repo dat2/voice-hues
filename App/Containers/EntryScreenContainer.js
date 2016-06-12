@@ -1,7 +1,7 @@
 import EntryScreen from '../Components/EntryScreen';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { createRequestDiscoverBridgesAction } from '../Modules/PhilipsModule';
+import { createRequestDiscoverBridgesAction, createSelectBridgeAction } from '../Modules/PhilipsModule';
 
 const mapStateToProps = ({ philips }) => ({
   bridges: philips.getIn(['entry', 'bridges']),
@@ -9,6 +9,9 @@ const mapStateToProps = ({ philips }) => ({
   error: philips.getIn(['entry', 'error'])
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ discover: createRequestDiscoverBridgesAction }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  discover: createRequestDiscoverBridgesAction,
+  selectBridge: createSelectBridgeAction
+}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(EntryScreen);

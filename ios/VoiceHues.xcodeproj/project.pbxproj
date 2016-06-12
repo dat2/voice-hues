@@ -17,6 +17,12 @@
 		0136D3861D0CA23E00C9E11A /* pushlink_bridgev1.svg in Resources */ = {isa = PBXBuildFile; fileRef = 0136D3821D0CA23E00C9E11A /* pushlink_bridgev1.svg */; };
 		0136D3871D0CA23E00C9E11A /* pushlink_bridgev2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0136D3831D0CA23E00C9E11A /* pushlink_bridgev2.png */; };
 		0136D3881D0CA23E00C9E11A /* pushlink_bridgev2.svg in Resources */ = {isa = PBXBuildFile; fileRef = 0136D3841D0CA23E00C9E11A /* pushlink_bridgev2.svg */; };
+		0136D39B1D0CB14800C9E11A /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0136D3981D0CB14800C9E11A /* AcousticModelEnglish.bundle */; };
+		0136D39C1D0CB14800C9E11A /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0136D3991D0CB14800C9E11A /* OpenEars.framework */; };
+		0136D39D1D0CB14800C9E11A /* Slt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0136D39A1D0CB14800C9E11A /* Slt.framework */; };
+		0136D39F1D0CB26300C9E11A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0136D39E1D0CB26300C9E11A /* AudioToolbox.framework */; };
+		0136D3A11D0CB26A00C9E11A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0136D3A01D0CB26A00C9E11A /* AVFoundation.framework */; };
+		0136D3A31D0CBB1000C9E11A /* VoiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0136D3A21D0CBB1000C9E11A /* VoiceController.m */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -161,6 +167,13 @@
 		0136D3821D0CA23E00C9E11A /* pushlink_bridgev1.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = pushlink_bridgev1.svg; path = ../App/Images/pushlink_bridgev1.svg; sourceTree = "<group>"; };
 		0136D3831D0CA23E00C9E11A /* pushlink_bridgev2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pushlink_bridgev2.png; path = ../App/Images/pushlink_bridgev2.png; sourceTree = "<group>"; };
 		0136D3841D0CA23E00C9E11A /* pushlink_bridgev2.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = pushlink_bridgev2.svg; path = ../App/Images/pushlink_bridgev2.svg; sourceTree = "<group>"; };
+		0136D3981D0CB14800C9E11A /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelEnglish.bundle; sourceTree = "<group>"; };
+		0136D3991D0CB14800C9E11A /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEars.framework; sourceTree = "<group>"; };
+		0136D39A1D0CB14800C9E11A /* Slt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Slt.framework; sourceTree = "<group>"; };
+		0136D39E1D0CB26300C9E11A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		0136D3A01D0CB26A00C9E11A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		0136D3A21D0CBB1000C9E11A /* VoiceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VoiceController.m; path = VoiceHues/VoiceController.m; sourceTree = "<group>"; };
+		0136D3A41D0CBB1E00C9E11A /* VoiceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VoiceController.h; path = VoiceHues/VoiceController.h; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* VoiceHues.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VoiceHues.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,6 +214,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0136D3A11D0CB26A00C9E11A /* AVFoundation.framework in Frameworks */,
+				0136D39F1D0CB26300C9E11A /* AudioToolbox.framework in Frameworks */,
+				0136D39D1D0CB14800C9E11A /* Slt.framework in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
@@ -208,6 +224,7 @@
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
+				0136D39C1D0CB14800C9E11A /* OpenEars.framework in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
@@ -277,6 +294,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		0136D3971D0CB14800C9E11A /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				0136D3981D0CB14800C9E11A /* AcousticModelEnglish.bundle */,
+				0136D3991D0CB14800C9E11A /* OpenEars.framework */,
+				0136D39A1D0CB14800C9E11A /* Slt.framework */,
+			);
+			name = Framework;
+			path = OpenEarsDistribution/Framework;
+			sourceTree = "<group>";
+		};
 		01DEBE931D08E8C4007B98DE /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -332,6 +360,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				0136D3A21D0CBB1000C9E11A /* VoiceController.m */,
+				0136D3A41D0CBB1E00C9E11A /* VoiceController.h */,
 			);
 			name = VoiceHues;
 			sourceTree = "<group>";
@@ -398,6 +428,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				0136D3A01D0CB26A00C9E11A /* AVFoundation.framework */,
+				0136D39E1D0CB26300C9E11A /* AudioToolbox.framework */,
+				0136D3971D0CB14800C9E11A /* Framework */,
 				13B07FAE1A68108700A75B9A /* VoiceHues */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* VoiceHuesTests */,
@@ -663,6 +696,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				B1FA874DA1914FE498A15229 /* Entypo.ttf in Resources */,
+				0136D39B1D0CB14800C9E11A /* AcousticModelEnglish.bundle in Resources */,
 				0136D3881D0CA23E00C9E11A /* pushlink_bridgev2.svg in Resources */,
 				3F51F9B19070457D87EA59B8 /* EvilIcons.ttf in Resources */,
 				0136D3871D0CA23E00C9E11A /* pushlink_bridgev2.png in Resources */,
@@ -711,6 +745,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				0136D3A31D0CBB1000C9E11A /* VoiceController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -787,6 +822,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEAD_CODE_STRIPPING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OpenEarsDistribution/Framework",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -813,6 +852,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OpenEarsDistribution/Framework",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,

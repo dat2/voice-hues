@@ -44,6 +44,26 @@ export function createUser(api) {
     });
 }
 
-export function turnLightOn(api, username, { id, on }) {
+export const API_NAMES = {
+  turnLightOn: 'TURN_LIGHT_ON',
+  turnRoomOn: 'TURN_ROOM_ON',
+  getGroups: 'GET_GROUPS'
+};
+
+function turnLightOn(api, username, { id, on }) {
   return api.put(`/api/${username}/lights/${id}/state`, { on });
 }
+
+function turnRoomOn(api, username, { id, on }) {
+  return api.put(`/api/${username}/groups/${id}/action`, { on });
+}
+
+function getGroups(api, username) {
+  return api.get(`/api/${username}/groups`);
+}
+
+export const NAMES_TO_API_CALL = {
+  TURN_LIGHT_ON: turnLightOn,
+  TURN_ROOM_ON: turnRoomOn,
+  GET_GROUPS: getGroups
+};

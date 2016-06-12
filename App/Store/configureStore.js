@@ -13,7 +13,8 @@ export default function configureStore() {
 
   // create enhancers
   const enhancers = compose(
-    autoRehydrate({ log: true }),
+    // autoRehydrate({ log: true }),
+    autoRehydrate(),
     applyMiddleware(sagaMiddleware),
     Reactotron.storeEnhancer()
   );
@@ -23,7 +24,7 @@ export default function configureStore() {
     rootReducer,
     enhancers
   );
-  persistStore(store, { storage: AsyncStorage, transforms: [immutableTransform({})] });
+  persistStore(store, { storage: AsyncStorage, transforms: [immutableTransform({})], blacklist: ['voice'] });
 
   // run the daemons
   sagaMiddleware.run(sagas);

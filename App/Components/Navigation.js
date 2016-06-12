@@ -4,7 +4,7 @@ import { Navigator, Text, View, TouchableHighlight } from 'react-native';
 import globalStyles from './styles';
 const style = globalStyles.extend({
   navigator: {
-    paddingTop: 60
+    paddingTop: 65
   },
   navBar: {
     // border bottom

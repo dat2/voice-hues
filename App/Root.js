@@ -26,6 +26,9 @@ Reactotron.connect({
 });
 const store = configureStore();
 
+import { listenForNativeEvents } from './Sagas/VoiceSaga';
+listenForNativeEvents(store);
+
 class Root extends React.Component {
   render() {
     return (
