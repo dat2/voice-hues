@@ -10,16 +10,19 @@ const vars = variables({
   appWidth: width,
   appHeight: height,
 
-  // colours
-  background: 'white',
   text: 'black',
-  grey: '#ddd'
+  lightText: 'grey',
+
+  // colours
+  white: 'white',
+  darkGrey: '#222',
+  grey: '#e5e5e5'
 });
 
 export default cairn(
   {
     background: {
-      backgroundColor: '$background'
+      backgroundColor: '$white'
     },
     centered: {
       flex: 1,

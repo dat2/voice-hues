@@ -8,6 +8,7 @@ import { API_NAMES } from '../Services/PhilipsApi';
 const mapStateToProps = ({ philips, voice }) => ({
   username: philips.getIn(['control', 'username']),
   listeningForSpeech: voice.get('listeningForSpeech'),
+  speaking: voice.get('speaking'),
   text: voice.getIn(['hypothesis', 'hypothesis'])
 });
 

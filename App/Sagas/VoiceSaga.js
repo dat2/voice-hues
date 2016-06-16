@@ -13,7 +13,7 @@ import {
   STOP_LISTENING,
   SPEECH_ENDED, HYPOTHESIS,
 
-  createHypothesisAction, createSpeechStartedAction, createSpeechEndedAction
+  createHypothesisAction, createSpeechStartedAction, createSpeechEndedAction, createStopListeningAction
 } from '../Modules/VoiceModule';
 
 let hypothesisListener = null,
@@ -39,6 +39,7 @@ export function listenForNativeEvents(store) {
     'speechFinished',
     () => {
       store.dispatch(createSpeechEndedAction());
+      store.dispatch(createStopListeningAction());
     }
   );
 }
@@ -54,15 +55,6 @@ function* setPhrases(action) {
 
   VoiceController.setPhrases(phrases);
   yield put({ type: INITIALIZE_PHRASES_DONE });
-}
-
-function* startListening() {
-  yield take(INITIALIZE_PHRASES_DONE);
-  VoiceController.startListening();
-}
-
-function* stopListening() {
-  VoiceController.stopListening();
 }
 
 function* sendRequest() {
@@ -83,8 +75,6 @@ function* sendRequest() {
 export default function* voiceSaga() {
   yield [
     takeEvery(INITIALIZE_PHRASES, setPhrases),
-    takeEvery(START_LISTENING, startListening),
-    takeEvery(STOP_LISTENING, stopListening),
     takeEvery(SPEECH_ENDED, sendRequest)
   ];
 

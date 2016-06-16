@@ -1,5 +1,6 @@
 import React from 'react';
-import { ListView, View, Text, TouchableHighlight } from 'react-native';
+import { ListView, Image, View, Text, TouchableHighlight } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import globalStyles from './styles';
 
 const style = globalStyles.extend({
@@ -13,26 +14,61 @@ const style = globalStyles.extend({
   bridge: {
     flex: 1,
     flexDirection: 'row',
-    width: '$appWidth',
+
+    alignItems: 'center',
+    justifyContent: 'space-between',
 
     padding: 10,
+    marginLeft: 15,
 
     borderBottomColor: '$grey',
-    borderBottomWidth: '$hairline'
+    borderBottomWidth: '$hairline',
+
+    // greyed out if not authenticated
+    opacity: 0.5,
+
+    authenticated: {
+      opacity: 1
+    }
+  },
+
+  bridgeCheck: {
+    // paddingLeft: 5,
+    paddingRight: 5
+  },
+
+  bridgeImage: {
+    width: 40,
+    height: 40,
+    marginRight: 10
+  },
+
+  bridgeTextContainer: {
+    flex: 1
   },
 
   bridgeText: {
     color: '$text',
-    fontSize: 20,
 
     name: {
-      flex: 1
+      fontSize: 20
+    },
+    description: {
+      fontSize: 12,
+      color: '$lightText'
+    }
+  },
+
+  bridgeChevron: {
+    props: {
+      color: '$darkGrey'
     }
   },
 
   listView: {
     borderBottomColor: '$grey',
-    borderBottomWidth: '$hairline'
+    borderBottomWidth: '$hairline',
+    width: '$appWidth'
   }
 });
 
@@ -45,13 +81,19 @@ class Bridge extends React.Component {
   }
 
   render() {
-    const { name, internalipaddress } = this.props;
+    const { authenticated, name, internalipaddress, modelid } = this.props;
+
+    const image = modelid === 'BSB001' ? require('../Images/bridge_v1.png') : require('../Images/bridge_v2.png');
 
     return (
       <TouchableHighlight onPress={this.onPress.bind(this)} {...style('bridgeHighlight')}>
-        <View {...style('bridge')}>
-          <Text {...style('bridgeText.name')}>{ name }</Text>
-          <Text {...style('bridgeText')}>{ internalipaddress }</Text>
+        <View {...style(`bridge${authenticated ? '.authenticated' : ''}`)}>
+          <Image source={image} {...style('bridgeImage')} />
+          <View {...style('bridgeTextContainer')}>
+            <Text {...style('bridgeText.name')}>{ name }</Text>
+            <Text {...style('bridgeText.description')}>{ internalipaddress }</Text>
+          </View>
+          <Icon name='chevron-right' size={15} {...style('bridgeChevron')} />
         </View>
       </TouchableHighlight>
     );

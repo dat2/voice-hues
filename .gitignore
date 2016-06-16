@@ -41,3 +41,6 @@ android/keystores/debug.keystore
 
 # design folder
 design/
+
+# vscode
+.vscode

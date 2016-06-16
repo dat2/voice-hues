@@ -7,8 +7,6 @@ import globalStyles from './styles';
 const style = globalStyles.extend({
   waitingScreen: {
     image: {
-      width: 120,
-      height: 120
     }
   }
 });
@@ -29,7 +27,7 @@ class ControlScreen extends React.Component {
   renderWaitScreen() {
     const { count, bridge: { modelid } } = this.props;
 
-    const source = modelid === 'BSB001' ? require('../Images/pushlink_bridgev1.png') : require('../Images/pushlink_bridgev2.png');
+    const source = modelid === 'BSB001' ? require('../Images/pushlink_bridgev1.svg') : require('../Images/pushlink_bridgev2.svg');
 
     return (
       <View {...style('centered waitingScreen')}>

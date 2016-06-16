@@ -69,19 +69,21 @@ RCT_EXPORT_METHOD(stopListening) {
     RCTLogInfo(@"Successfully created a language model at %@", name);
   }
   
+  // only set active once at the start
+  [[OEPocketsphinxController sharedInstance] setActive:TRUE error:nil];
+  
   return err;
 }
 
 - (void) _startListening {
-  [[OEPocketsphinxController sharedInstance] setActive:TRUE error:nil];
-  [[OEPocketsphinxController sharedInstance] startListeningWithLanguageModelAtPath:_lmPath dictionaryAtPath:_dicPath acousticModelAtPath:[OEAcousticModel pathToModel:@"AcousticModelEnglish"] languageModelIsJSGF:NO];
   // Change "AcousticModelEnglish" to "AcousticModelSpanish" to perform Spanish recognition instead of English.
+  [[OEPocketsphinxController sharedInstance] startListeningWithLanguageModelAtPath:_lmPath dictionaryAtPath:_dicPath acousticModelAtPath:[OEAcousticModel pathToModel:@"AcousticModelEnglish"] languageModelIsJSGF:NO];
+  
   _listening = true;
 }
 
 - (void) _stopListening {
   [[OEPocketsphinxController sharedInstance] stopListening];
-  [[OEPocketsphinxController sharedInstance] setActive:FALSE error:nil];
   _listening = false;
 }
 

@@ -8,7 +8,7 @@ const style = globalStyles.extend({
   },
   navBar: {
     // border bottom
-    borderBottomColor: '$grey',
+    borderBottomColor: '$darkGrey',
     borderBottomWidth: '$hairline',
 
     title: {
@@ -28,8 +28,8 @@ const screenToComponent = {
 };
 
 const screenToTitle = {
-  'entry': 'Bridges',
-  'control': 'Control'
+  'entry': 'Connect to a Bridge',
+  'control': 'Control your Bridge'
 };
 
 const NavigationBarRouteMapper = {

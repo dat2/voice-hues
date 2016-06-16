@@ -1,5 +1,8 @@
 import Immutable from 'immutable';
 
+import { NativeModules } from 'react-native';
+const { VoiceController } = NativeModules;
+
 // action types
 export const INITIALIZE_PHRASES = '@@VoiceHues/INITIALIZE_PHRASES';
 export const INITIALIZE_PHRASES_DONE = '@@VoiceHues/INITIALIZE_PHRASES_DONE';
@@ -15,10 +18,12 @@ export function createInitializePhrasesAction() {
 }
 
 export function createStartListeningAction() {
+  VoiceController.startListening();
   return { type: START_LISTENING };
 }
 
 export function createStopListeningAction() {
+  VoiceController.stopListening();
   return { type: STOP_LISTENING };
 }
 
@@ -37,23 +42,31 @@ export function createSpeechEndedAction() {
 // reducer
 const initialState = Immutable.fromJS({
   listeningForSpeech: false,
+  speaking: false,
   hypothesis: {
   }
 });
+
 export default function reducer(state = initialState, action) {
   switch(action.type) {
     case HYPOTHESIS:
       return state.set('hypothesis', Immutable.fromJS(action.payload.hypothesis));
 
     case SPEECH_STARTED:
-      return state.set('listeningForSpeech', true);
+      return state
+        .set('speaking', true);
 
     case SPEECH_ENDED:
-      return state.set('listeningForSpeech', false)
+      return state
+        .set('speaking', false)
         .set('hypothesis', Immutable.Map());
+
+    case START_LISTENING:
+      return state.set('listeningForSpeech', true);
 
     case STOP_LISTENING:
       return state
+        .set('listeningForSpeech', false)
         .set('hypothesis', Immutable.Map());
   }
 
